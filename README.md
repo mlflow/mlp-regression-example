@@ -1,10 +1,6 @@
-# MLflow Pipelines Regression Template
-This repository serves as a customizable template for the
-[MLflow Regression Pipeline](https://mlflow.org/docs/latest/pipelines.html#regression-pipeline)
-to develop high-quality production-ready regression models.
-
-Currently supported ML models are limited to scikit-learn and frameworks that
-integrate with scikit-learn, such as the ``XGBRegressor`` API from XGBoost.
+# MLflow Recipe Regression Example
+This repository serves as an example project for the
+[MLflow Regression Pipeline](https://mlflow.org/docs/latest/pipelines.html#regression-pipeline).
 
 **Note**: [MLflow Pipelines](https://mlflow.org/docs/latest/pipelines.html)
 is an experimental feature in [MLflow](https://mlflow.org).
@@ -26,17 +22,17 @@ pip install "mlflow[pipelines]"  # for pip
 conda install -c conda-forge mlflow-pipelines  # for conda
 ```
 
-2. Clone this MLflow Regression Pipeline template repository locally:
+2. Clone this MLflow Recipe Regression Pipeline example repository locally:
 ```
-git clone https://github.com/mlflow/mlp-regression-template.git
-```
-
-3. Enter the root directory of the cloned pipeline template:
-```
-cd mlp-regression-template
+git clone git@github.com:mlflow/mlr-regression-example.git
 ```
 
-4. Install the template dependencies:
+3. Enter the root directory of the cloned mlr regression example repo:
+```
+cd mlr-regression-example
+```
+
+4. Install the dependencies:
 ```
 pip install -r requirements.txt
 ```
@@ -72,9 +68,9 @@ You can find MLflow Experiments and MLflow Runs created by the pipeline on the
 
 ### Command-Line Interface (CLI)
 
-First, enter the template root directory and set the profile via environment variable
+First, enter the example root directory and set the profile via environment variable
 ```
-cd mlp-regression-template
+cd mlr-regression-example
 ```
 ```
 export MLFLOW_PIPELINES_PROFILE=local
@@ -118,7 +114,7 @@ mlp -s ingest
 ### Accessing MLflow Pipeline Runs
 To view MLflow Experiments and MLflow Runs created by the pipeline:
 
-1. Enter the template root directory: `cd mlp-regression-template`
+1. Enter the example root directory: `cd mlr-regression-example`
 
 2. Start the MLflow UI
 
