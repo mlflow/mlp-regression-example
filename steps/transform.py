@@ -36,7 +36,7 @@ def transformer_fn():
         steps=[
             (
                 "calculate_time_and_duration_features",
-                FunctionTransformer(calculate_features, feature_names_out="one-to-one"),
+                FunctionTransformer(calculate_features),
             ),
             (
                 "encoder",
