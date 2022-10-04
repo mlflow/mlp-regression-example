@@ -1,4 +1,4 @@
-# MLflow Recipe Regression Example
+# MLflow Pipelines Regression Example
 This repository serves as an example project for the
 [MLflow Regression Pipeline](https://mlflow.org/docs/latest/pipelines.html#regression-pipeline).
 
@@ -22,7 +22,7 @@ pip install "mlflow[pipelines]"  # for pip
 conda install -c conda-forge mlflow-pipelines  # for conda
 ```
 
-2. Clone this MLflow Recipe Regression Pipeline example repository locally:
+2. Clone this MLflow Pipelines Regression example repository locally:
 ```
 git clone git@github.com:mlflow/mlr-regression-example.git
 ```
