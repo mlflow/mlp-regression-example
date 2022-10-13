@@ -4,6 +4,12 @@ This repository serves as an example project for the
 Follow the instructions below to download the latest MLflow and this repository
 to create a linear regressor and evaluate its performance, all out of box!
 
+**Note** This example repo is intended for first-time MLflow Pipelines users to learn
+its fundamental concepts and workflows.
+For users already familiar with MLflow Pipelines, seeking a template repository
+to solve a specific regression ML problem, consider using
+[mlp-regression-template](https://github.com/mlflow/mlp-regression-template) instead.
+
 **Note**: [MLflow Pipelines](https://mlflow.org/docs/latest/pipelines.html)
 is an experimental feature in [MLflow](https://mlflow.org).
 If you observe any issues,
@@ -36,31 +42,12 @@ Finally, challenge yourself to build a better model. Try the following:
 - Fine tune the hyperparameters of the model.
 
 ## Installation instructions
-(Optional) Create a clean Python environment either via
-[virtualenv](https://pypi.org/project/virtualenv) or
-[conda](https://pypi.org/project/conda) for the best experience.
-Python 3.7 or higher is required.
-
-1. Install the latest MLflow with Pipelines:
-```
-pip install "mlflow[pipelines]"  # for pip
-conda install -c conda-forge mlflow-pipelines  # for conda
-```
-
-2. Clone this MLflow Pipelines Regression example repository locally:
-```
-git clone git@github.com:mlflow/mlr-regression-example.git
-```
-
-3. Enter the root directory of the cloned mlr regression example repo:
-```
-cd mlr-regression-example
-```
-
-4. Install the dependencies:
-```
-pip install -r requirements.txt
-```
+Follow the [MLflow Pipelines installation guide](https://mlflow.org/docs/latest/pipelines.html#installation). 
+You may need to install additional libraries for extra features:
+- [Hyperopt](https://pypi.org/project/hyperopt/)  is required for hyperparameter tuning.
+- [PySpark](https://pypi.org/project/pyspark/)  is required for distributed training or to ingest Spark tables.
+- [Delta](https://pypi.org/project/delta-spark/) is required to ingest Delta tables.
+These libraries are available natively in the [Databricks Runtime for Machine Learning](https://docs.databricks.com/runtime/mlruntime.html).
 
 ## Log to the designated MLflow Experiment
 To log pipeline runs to a particular MLflow experiment:
