@@ -1,6 +1,8 @@
 # MLflow Pipelines Regression Example
 This repository serves as an example project for the
 [MLflow Regression Pipeline](https://mlflow.org/docs/latest/pipelines.html#regression-pipeline).
+Follow the instructions below to download the latest MLflow and this repository
+to create a linear regressor and evaluate its performance, all out of box!
 
 **Note**: [MLflow Pipelines](https://mlflow.org/docs/latest/pipelines.html)
 is an experimental feature in [MLflow](https://mlflow.org).
@@ -9,6 +11,29 @@ please report them [here](https://github.com/mlflow/mlflow/issues).
 For suggestions on improvements,
 please file a discussion topic [here](https://github.com/mlflow/mlflow/discussions).
 Your contribution to MLflow Pipelines is greatly appreciated by the community!
+
+## The ML problem: NYC taxi fare prediction
+In this example, we demonstrate how to use MLflow Pipelines
+to predict the fare amount for a taxi ride in New York City,
+given the pickup and dropoff locations, trip duration and distance etc. 
+The original data was published by the [NYC gov](https://www1.nyc.gov/site/tlc/about/tlc-trip-record-data.page).
+We show how to build and evaluate a very simple linear regressor step by step,
+following the best practices of machine learning engineering.
+By the end of this example,
+you will learn how to use MLflow Pipelines to
+- Ingest the raw source data.
+- Splits the dataset into training/validation/test.
+- Create a feature transformer and transform the dataset.
+- Train a linear model (regressor) to predict the taxi fare.
+- Evaluate the trained model, and improve it by iterating through the `transform` and `train` steps.
+- Register the model for production inference.
+
+All of these can be done with Jupyter notebook or on Databricks environment.
+Finally, challenge yourself to build a better model. Try the following:
+- Find a better data source with more training data and more raw feature columns.
+- Clean the dataset to make it less noisy.
+- Find better feature transformations.
+- Fine tune the hyperparameters of the model.
 
 ## Installation instructions
 (Optional) Create a clean Python environment either via
