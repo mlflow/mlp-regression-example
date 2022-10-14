@@ -30,11 +30,19 @@ def transformer_fn():
     The transformer's input and output signatures should be compatible with scikit-learn
     transformers.
     """
+    import sklearn
+
+    function_transformer_params = (
+        {}
+        if sklearn.__version__.startswith("1.0")
+        else {"feature_names_out": "one-to-one"}
+    )
+
     return Pipeline(
         steps=[
             (
                 "calculate_time_and_duration_features",
-                FunctionTransformer(calculate_features, feature_names_out="one-to-one"),
+                FunctionTransformer(calculate_features, **function_transformer_params),
             ),
             (
                 "encoder",
