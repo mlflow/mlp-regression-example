@@ -38,7 +38,7 @@ jobs:
           INSTALL_SKLEARN_PIPELINE_DEPS: true
         run: |
           pip install mlflow[pipelines]
-          pip install -r ../requirements.txt
+          pip install -r ./requirements.txt
       - name: Run example
         run: |
           export MLFLOW_PIPELINES_PROFILE=local
