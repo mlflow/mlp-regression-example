@@ -37,9 +37,9 @@ jobs:
         env:
           INSTALL_SKLEARN_PIPELINE_DEPS: true
         run: |
-          source ./.github/workflows/scripts/install-common-deps.sh
-          pip install -r .github/workflows/scripts/test-requirements.txt
+          pip install mlflow[pipelines]
+          pip install -r ../requirements.txt
       - name: Run example
         run: |
-            export MLFLOW_PIPELINES_PROFILE=local
-            mlp run
+          export MLFLOW_PIPELINES_PROFILE=local
+          mlp run
