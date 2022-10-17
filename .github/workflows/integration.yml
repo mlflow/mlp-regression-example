@@ -3,11 +3,11 @@ name: MLflow Pipelines Example Tests
 on:
   push:
     branches:
-      - main
+      - master
       - branch-[0-9]+.[0-9]+
   pull_request:
     branches:
-      - main
+      - master
       - branch-[0-9]+.[0-9]+
       
 concurrency:
