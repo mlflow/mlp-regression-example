@@ -41,7 +41,7 @@ data_scoring:
   custom_loader_method: steps.ingest.load_file_as_dataframe
   sql: SELECT * FROM delta.`{{INGEST_SCORING_DATA_LOCATION}}`
 # Specifies the name of the column containing targets / labels for model training and evaluation
-target_col: "fare_amount"
+target_col: "species"
 steps:
   split:
     # Train/validation/test split ratios
@@ -60,12 +60,8 @@ steps:
     # Sets performance thresholds that a trained model must meet in order to be eligible for
     # registration to the MLflow Model Registry
     validation_criteria:
-      - metric: root_mean_squared_error
+      - metric: log_loss
         threshold: 10
-      - metric: mean_absolute_error
-        threshold: 50
-      - metric: weighted_mean_squared_error
-        threshold: 20
   register:
     # Specifies the name of the Registered Model to use when registering a trained model to
     # the MLflow Model Registry
@@ -83,11 +79,6 @@ steps:
     output_format: {{SCORED_OUTPUT_DATA_FORMAT|default('parquet')}}
 metrics:
   # Defines custom performance metrics to compute during model training and evaluation
-  custom:
-    - name: weighted_mean_squared_error
-      # Specifies the name of the function in `steps/custom_metrics.py` to use to compute the metric
-      function: weighted_mean_squared_error
-      greater_is_better: False
   # Sets the primary metric to use to evaluate model performance. This primary metric is used
   # to sort MLflow Runs corresponding to the pipeline in the MLflow Tracking UI
-  primary: "root_mean_squared_error"
+  primary: "log_loss"
