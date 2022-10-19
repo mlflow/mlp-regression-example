@@ -20,6 +20,8 @@ def calculate_features(df: DataFrame):
     df["pickup_hour"] = df["tpep_pickup_datetime"].dt.hour
     trip_duration = df["tpep_dropoff_datetime"] - df["tpep_pickup_datetime"]
     df["trip_duration"] = trip_duration.map(lambda x: x.total_seconds() / 60)
+    dateTimeColumns = list(df.select_dtypes(include=['datetime64']).columns)
+    df[dateTimeColumns] = df[dateTimeColumns].astype(str)
     df.drop(columns=["tpep_pickup_datetime", "tpep_dropoff_datetime"], inplace=True)
     return df
 
