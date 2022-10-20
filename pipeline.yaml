@@ -17,29 +17,7 @@ target_col: "fare_amount"
 # to sort MLflow Runs corresponding to the pipeline in the MLflow Tracking UI
 primary_metric: "root_mean_squared_error"
 steps:
-  ingest:
-    # Specifies the dataset to use for model development
-    # Beyond `parquet` datasets, the `spark_sql` and `delta` formats are also natively supported for
-    # use with Spark
-    using: {{INGEST_DATA_FORMAT|default('parquet')}}
-    # Dataset locations on the local filesystem are supported, as well as HTTP(S) URLs and
-    # any other remote locations resolvable by MLflow, such as those listed in
-    # https://mlflow.org/docs/latest/tracking.html#artifact-stores
-    location: {{INGEST_DATA_LOCATION}}
-    # Datasets with other formats, including `csv`, can be used by implementing and
-    # specifying a `custom_loader_method`
-    custom_loader_method: steps.ingest.load_file_as_dataframe
-    # If the `spark_sql` `format` is specified,
-    # And if the table location format is path-like, use the following sql command for Spark to read
-    # sub-columns from the table:
-    sql: SELECT * FROM delta.`{{INGEST_DATA_LOCATION}}`
-    # And if the table location format is table-like, use the following sql command for Spark to read
-    # sub-columns from the table:
-    # sql: SELECT col1, col2 FROM {{INGEST_DATA_LOCATION}}
-    # If the `delta` `format` is specified, you can also configure the Delta table `version` to read
-    # or the `timestamp` at which to read data
-    # version: 2
-    # timestamp: 2022-06-01T00:00:00.000Z
+  ingest: {{INGEST_CONFIG}}
   split:
     # Train/validation/test split ratios
     split_ratios: {{SPLIT_RATIOS|default([0.75, 0.125, 0.125])}}
@@ -64,25 +42,11 @@ steps:
       - metric: weighted_mean_squared_error
         threshold: 20
   register:
-    # Specifies the name of the Registered Model to use when registering a trained model to
-    # the MLflow Model Registry
-    model_name: "taxi_fare_regressor"
     # Indicates whether or not a model that fails to meet performance thresholds should still
     # be registered to the MLflow Model Registry
     allow_non_validated_model: false
-    # specify the dataset to use for batch scoring.  All params serve the same function as in `data`
-    using: {{INGEST_SCORING_DATA_FORMAT|default('parquet')}}
-    location: {{INGEST_SCORING_DATA_LOCATION}}
-    custom_loader_method: steps.ingest.load_file_as_dataframe
-    sql: SELECT * FROM delta.`{{INGEST_SCORING_DATA_LOCATION}}`
-  predict:
-    # Specifically define the model URI to use in batch scoring here or use the latest model
-    # registered from the training DAG
-    # model_uri: "models/model.pkl"
-    # Specify the output path of the scored data from predict
-    output_location: {{SCORED_OUTPUT_DATA_LOCATION}}
-    # Specify the output format of the scored data from predict
-    output_format: {{SCORED_OUTPUT_DATA_FORMAT|default('parquet')}}
+  ingest_scoring: {{INGEST_SCORING_CONFIG}}
+  predict: {{PREDICT_CONFIG}}
 # Defines custom performance metrics to compute during model training and evaluation
 custom_metrics:
   - name: weighted_mean_squared_error
