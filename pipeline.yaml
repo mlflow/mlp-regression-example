@@ -10,7 +10,8 @@
 # NOTE: YAML does not support tabs for indentation. Please use spaces and ensure that all YAML
 # files are properly formatted.
 
-template: "regression/v1"
+template: "classification/v1"
+positive_class: "Iris-setosa"
 # Specifies the dataset to use for model development
 data:
   # Dataset locations on the local filesystem are supported, as well as HTTP(S) URLs and
@@ -56,11 +57,13 @@ steps:
     using: estimator_spec
     # Specifies the method that defines the estimator type and parameters to use for model training
     estimator_method: steps.train.estimator_fn
+    estimator_params:
+        loss: log_loss
   evaluate:
     # Sets performance thresholds that a trained model must meet in order to be eligible for
     # registration to the MLflow Model Registry
     validation_criteria:
-      - metric: log_loss
+      - metric: f1_score
         threshold: 10
   register:
     # Specifies the name of the Registered Model to use when registering a trained model to
@@ -81,4 +84,4 @@ metrics:
   # Defines custom performance metrics to compute during model training and evaluation
   # Sets the primary metric to use to evaluate model performance. This primary metric is used
   # to sort MLflow Runs corresponding to the pipeline in the MLflow Tracking UI
-  primary: "log_loss"
+  primary: "f1_score"

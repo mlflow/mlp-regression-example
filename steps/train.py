@@ -6,7 +6,7 @@ This module defines the following routines used by the 'train' step of the regre
 """
 
 
-def estimator_fn():
+def estimator_fn(estimator_params = {}):
     """
     Returns an *unfitted* estimator that defines ``fit()`` and ``predict()`` methods.
     The estimator's input and output signatures should be compatible with scikit-learn
@@ -16,4 +16,4 @@ def estimator_fn():
     from sklearn.multioutput import MultiOutputClassifier
     from sklearn.linear_model import SGDClassifier
 
-    return SGDClassifier(random_state=16)
+    return SGDClassifier(random_state=16, **estimator_params)
