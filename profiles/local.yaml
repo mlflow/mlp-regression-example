@@ -16,16 +16,16 @@ model_registry:
 SPLIT_RATIOS: [0.80, 0.10, 0.10]
 
 INGEST_CONFIG:
-    # For different options please read: https://github.com/mlflow/mlp-regression-template#ingest-step
-    using: parquet
-    location: "./data/sample.parquet"
+  # For different options please read: https://github.com/mlflow/mlp-regression-template#ingest-step
+  using: parquet
+  location: "./data/sample.parquet"
 
 INGEST_SCORING_CONFIG:
   # For different options please read: https://github.com/mlflow/mlp-regression-template#batch-scoring
   using: parquet
   location: "./data/sample.parquet"
 
-PREDICT_CONFIG:
+PREDICT_OUTPUT_CONFIG:
   # For different options please read: https://github.com/mlflow/mlp-regression-template#predict-step
   using: parquet
-  output_location: "./data/sample_output.parquet"
+  location: "./data/sample_output.parquet"

@@ -46,7 +46,8 @@ steps:
     # be registered to the MLflow Model Registry
     allow_non_validated_model: false
   ingest_scoring: {{INGEST_SCORING_CONFIG}}
-  predict: {{PREDICT_CONFIG}}
+  predict:
+    output: {{PREDICT_OUTPUT_CONFIG}}
 # Defines custom performance metrics to compute during model training and evaluation
 custom_metrics:
   - name: weighted_mean_squared_error
