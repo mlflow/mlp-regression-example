@@ -36,14 +36,10 @@ def weighted_mean_squared_error(
                             metrics and the values are the scalar values of the metrics. For more
                             information, see
                             https://mlflow.org/docs/latest/python_api/mlflow.html#mlflow.evaluate.
-    :return: A single-entry dictionary containing the MSE metric. The key is the metric name and
-             the value is the scalar metric value. Note that custom metric functions can return
-             dictionaries with multiple metric entries as well.
+    :return: The WMSE metric value.
     """
-    return {
-        "weighted_mean_squared_error": mean_squared_error(
-            eval_df["prediction"],
-            eval_df["target"],
-            sample_weight=1 / eval_df["prediction"].values,
-        )
-    }
+    return mean_squared_error(
+        eval_df["prediction"],
+        eval_df["target"],
+        sample_weight=1 / eval_df["prediction"].values,
+    )
