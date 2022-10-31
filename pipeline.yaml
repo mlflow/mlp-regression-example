@@ -48,6 +48,8 @@ steps:
   ingest_scoring: {{INGEST_SCORING_CONFIG}}
   predict:
     output: {{PREDICT_OUTPUT_CONFIG}}
+    # model_uri: "models/model.pkl"
+
 # Defines custom performance metrics to compute during model training and evaluation
 custom_metrics:
   - name: weighted_mean_squared_error

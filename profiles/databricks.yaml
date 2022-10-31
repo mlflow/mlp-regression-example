@@ -11,8 +11,6 @@ model_registry:
   # FIXME::REQUIRED: Specifies the name of the Registered Model to use when registering a trained
   #                 model to the MLflow Model Registry.
   model_name: "taxi_fare_regressor"
-  # model_uri: "models/model.pkl"
-
 
 # Override the default train / validation / test dataset split ratios
 SPLIT_RATIOS: [0.75, 0.125, 0.125]
