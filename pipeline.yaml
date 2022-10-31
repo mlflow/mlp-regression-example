@@ -10,12 +10,13 @@
 # NOTE: YAML does not support tabs for indentation. Please use spaces and ensure that all YAML
 # files are properly formatted.
 
-template: "regression/v1"
+template: "classification/v1"
 # Specifies the name of the column containing targets / labels for model training and evaluation
-target_col: "fare_amount"
+target_col: "species"
 # Sets the primary metric to use to evaluate model performance. This primary metric is used
 # to sort MLflow Runs corresponding to the pipeline in the MLflow Tracking UI
-primary_metric: "root_mean_squared_error"
+primary_metric: "f1_score"
+positive_class: "Iris-setosa"
 steps:
   ingest: {{INGEST_CONFIG}}
   split:
@@ -31,16 +32,14 @@ steps:
     using: estimator_spec
     # Specifies the method that defines the estimator type and parameters to use for model training
     estimator_method: steps.train.estimator_fn
+    estimator_params:
+        loss: log_loss
   evaluate:
     # Sets performance thresholds that a trained model must meet in order to be eligible for
     # registration to the MLflow Model Registry
     validation_criteria:
-      - metric: root_mean_squared_error
+      - metric: f1_score
         threshold: 10
-      - metric: mean_absolute_error
-        threshold: 50
-      - metric: weighted_mean_squared_error
-        threshold: 20
   register:
     # Indicates whether or not a model that fails to meet performance thresholds should still
     # be registered to the MLflow Model Registry
@@ -52,7 +51,3 @@ steps:
 
 # Defines custom performance metrics to compute during model training and evaluation
 custom_metrics:
-  - name: weighted_mean_squared_error
-    # Specifies the name of the function in `steps/custom_metrics.py` to use to compute the metric
-    function: weighted_mean_squared_error
-    greater_is_better: False
