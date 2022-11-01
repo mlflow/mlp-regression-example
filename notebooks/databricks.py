@@ -15,6 +15,10 @@
 
 # COMMAND ----------
 
+# MAGIC %md ### Create a new pipeline with "databricks" profile:
+
+# COMMAND ----------
+
 from mlflow.pipelines import Pipeline
 
 p = Pipeline(profile="databricks")
@@ -25,11 +29,23 @@ p.clean()
 
 # COMMAND ----------
 
+# MAGIC %md ### Inspect a newly created pipeline using a graphical representation:
+
+# COMMAND ----------
+
 p.inspect()
 
 # COMMAND ----------
 
+# MAGIC %md ### Ingest the dataset into the pipeline:
+
+# COMMAND ----------
+
 p.run("ingest")
+
+# COMMAND ----------
+
+# MAGIC %md ### Split the dataset in train, validation and test data profiles:
 
 # COMMAND ----------
 
@@ -41,11 +57,23 @@ p.run("transform")
 
 # COMMAND ----------
 
+# MAGIC %md ### Using training data profile, train the model:
+
+# COMMAND ----------
+
 p.run("train")
 
 # COMMAND ----------
 
+# MAGIC %md ### Evaluate the resulting model using validation data profile:
+
+# COMMAND ----------
+
 p.run("evaluate")
+
+# COMMAND ----------
+
+# MAGIC %md ### Register the trained model in the registry:
 
 # COMMAND ----------
 
