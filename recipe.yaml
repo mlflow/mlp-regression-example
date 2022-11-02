@@ -34,6 +34,7 @@ steps:
     estimator_method: steps.train.estimator_fn
     estimator_params:
         loss: log_loss
+    resampling_minority_percentage: 0.5
   evaluate:
     # Sets performance thresholds that a trained model must meet in order to be eligible for
     # registration to the MLflow Model Registry
