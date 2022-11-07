@@ -1,4 +1,8 @@
-# MLflow Pipelines Regression Example
+# [DEPRECATED] MLflow Pipelines Regression Example
+**NOTE**: This repository is deprecated as of 2022/11/07, and will be removed soon.
+If you are using MLflow 2.0,
+please refer to [MLflow Recipes Regression Example](https://github.com/mlflow/recipes-examples/tree/main/regression) instead.
+
 This repository serves as an example project for the
 [MLflow Regression Pipeline](https://mlflow.org/docs/latest/pipelines.html#regression-pipeline).
 Follow the instructions below to download the latest MLflow and this repository
